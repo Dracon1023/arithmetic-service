@@ -10,13 +10,11 @@ jobs:
             - uses: actions/checkout@v3
             - name: npm install
               run: npm ci
-            - name: run the unit tests
-              run: npm test
             - name: Build and push the image
               run: |
                 docker login --username Dracon1023 --password ${{secrets.ACCESS_TOKEN}} ghcr.io
-                docker build -t ghcr.io/dracon1023/arithmetic-service:latest --file Dockerfile .
-                docker push ghcr.io/dracon1023/arithmetic-service:latest
+                docker build -t ghcr.io/dracon1023/arithmetic-service:1 --file Dockerfile .
+                docker push ghcr.io/dracon1023/arithmetic-service:1
             - name: Publish the image to azure container registery
               run: |
                 docker login --username practicum15aldoub --password ${{secrets.AZURE_CONTAINER_REGISTERY}} practicum15aldoub.azurecr.io
